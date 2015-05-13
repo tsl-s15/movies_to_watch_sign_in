@@ -11,6 +11,10 @@ Let users sign in using Devise. Use [this guide][1] as reference.
 
 ### Part 2
 
+Edit the Devise forms to use Bootstrap. Make sure you generate the Devise views so you can edit them. Use the above guide as a reference. 
+
+### Part 3
+
 Make the "add to watch list" and "remove to watch list" buttons functional. It's up to you to decide the strategy for tackling this problem. It may help to break down the problem into discrete steps, then tackle each step one-at-a-time.
 
 ### Part 3
