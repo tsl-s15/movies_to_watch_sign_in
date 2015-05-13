@@ -38,6 +38,15 @@
         </div>
       </div>
     </div>
+    <h2>Cast</h2>
+    <ul class="list-group">
+      <% @movie.roles.each do |role| %>
+        <li class="list-group-item">
+          <%= link_to(role.character_name, role_url(role.id)) %>
+          ( <%= link_to(role.actor.name, actor_url(role.actor_id)) %> )
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>
 
