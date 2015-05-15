@@ -1,5 +1,26 @@
 Rails.application.routes.draw do
 
+  get '/users/:id', :controller => "users", :action => 'show', :as => 'user'
+
+  # Routes for the To_watch resource:
+  # CREATE
+  get '/to_watches/new',      :controller => 'to_watches', :action => 'new',    :as => 'new_to_watch'
+  post '/to_watches',         :controller => 'to_watches', :action => 'create', :as => 'to_watches'
+
+  # READ
+  get '/to_watches',          :controller => 'to_watches', :action => 'index'
+  get '/to_watches/:id',      :controller => 'to_watches', :action => 'show',   :as => 'to_watch'
+
+  # UPDATE
+  get '/to_watches/:id/edit', :controller => 'to_watches', :action => 'edit',   :as => 'edit_to_watch'
+  patch '/to_watches/:id',    :controller => 'to_watches', :action => 'update'
+
+  # DELETE
+  delete '/to_watches/:id',   :controller => 'to_watches', :action => 'destroy'
+  #------------------------------
+
+  devise_for :users
+  root to: "movies#index"
   # Routes for the Role resource:
   # CREATE
   get '/roles/new',      :controller => 'roles', :action => 'new',    :as => 'new_role'

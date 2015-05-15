@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1><%= @user.username.capitalize %>'s Watch List</h1>
+    <ul class="list-group">
+    <% @user.to_watches.each do |to_watch| %>
+      <li class="list-group-item">
+        <%= to_watch.movie.title %>
+        <%= link_to to_watch_url(to_watch.id), :method => "delete", :class => "btn btn-sm btn-danger" do %>
+          <i class="fa fa-times"></i>
+        <% end %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+</div>

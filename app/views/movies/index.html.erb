@@ -25,18 +25,30 @@
         <h3 class="panel-title"><%= movie.title %> (<%= movie.year %>)</h3>
       </div>
       <div class="panel-body">
-        <div class="btn-group btn-group-justified">
-          <%= link_to '#', :class => "btn btn-sm btn-success" do %>
-            <i class="fa fa-plus"></i>
-            Add to watch list
+        <% if user_signed_in? %>
+          <% to_watch = ToWatch.where(user_id: current_user.id, movie_id: movie.id).first %>
+          <% if to_watch %>
+            <div class="btn-group btn-group-justified">
+              <%= link_to to_watch_url(to_watch.id), :method => "delete", :class => "btn btn-sm btn-danger" do %>
+                <i class="fa fa-times"></i>
+                Remove from watch list
+              <% end %>
+            </div>
+          <% else %>
+            <%= form_tag to_watches_url, :method => "post", :class => "form-horizontal" do %>
+              <!-- Label and input for movie_id -->
+              <input type="hidden" id="movie_id" name="movie_id" placeholder="Movie" class="form-control" value="<%= movie.id %>">
+            <!-- Label and input for user_id -->
+              <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+
+              <button type="submit" class="btn btn-sm btn-success btn-block">
+                <i class="fa fa-plus"></i>
+                Add to watch list
+              </button>
+            <% end %>
           <% end %>
-        </div>
-        <div class="btn-group btn-group-justified">
-          <%= link_to '#', :class => "btn btn-sm btn-danger" do %>
-            <i class="fa fa-times"></i>
-            Remove from watch list
-          <% end %>
-        </div>
+
+        <% end %>
         <div class="btn-group btn-group-justified">
         </div>
         <dl>
