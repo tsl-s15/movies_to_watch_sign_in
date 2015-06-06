@@ -51,9 +51,18 @@ class MoviesController < ApplicationController
 
   def destroy
     @movie = Movie.find(params[:id])
-
     @movie.destroy
 
-    redirect_to movies_url, :notice => "Movie deleted."
+    respond_to do |format|
+      format.html { redirect_to movies_url, :notice => "Movie deleted." }
+      format.js
+    end
+
+
   end
 end
+
+
+
+
+
